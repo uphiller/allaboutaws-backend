@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function saveFile(){
+            var form_data = new FormData($('#upload-file')[0]);
+            $.ajax({
+                type: 'POST',
+                url: '/fileupload',
+                data: form_data,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    alert("파일이 업로드 되었습니다!!");
+                },
+            });
+        }
+    </script>
+</head>
+<body>
+<form id="upload-file">
+    <input type = "file" name = "file" />
+    <input type = "button" value="저장" onclick="saveFile()"/>
+</form>
+</body>
+</html>
