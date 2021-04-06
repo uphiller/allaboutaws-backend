@@ -24,12 +24,12 @@ application = Flask(__name__)
 #     }
 # apm = ElasticAPM(app, logging=True)
 
-@app.route('/')
+@application.route('/')
 def main():
 #     apm.capture_message('hello, world!')
     return "Hello, Backend"
 
-@app.route('/fileupload', methods=['POST'])
+@application.route('/fileupload', methods=['POST'])
 def file_upload():
     file = request.files['file']
     s3 = boto3.client('s3')
