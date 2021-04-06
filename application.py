@@ -1,6 +1,7 @@
 import boto3
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
+import os
 from flaskext.mysql import MySQL
 import redis
 from elasticapm.contrib.flask import ElasticAPM
@@ -8,6 +9,7 @@ from elasticapm.contrib.flask import ElasticAPM
 # mysql = MySQL()
 application = Flask(__name__)
 cors = CORS(application, resources={r"/*": {"origins": "*"}})
+config_name = os.getenv('APP_ENV')
 
 # MySQL configurations
 # app.config['MYSQL_DATABASE_USER'] = 'admin'
@@ -39,8 +41,8 @@ def go():
 def file_upload():
     file = request.files['file']
     s3 = boto3.client('s3',
-                      aws_access_key_id="AKIAS2KAI3ZLHI5KXXMG",
-                      aws_secret_access_key="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"
+                      aws_access_key_id=config_name["AWS_ACCESS_KEY_ID"],
+                      aws_secret_access_key=config_name["AWS_SECRET_ACCESS_KEY"]
                       )
     s3.put_object(
         ACL="public-read",
