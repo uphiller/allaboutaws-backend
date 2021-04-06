@@ -31,6 +31,10 @@ def main():
 #     apm.capture_message('hello, world!')
     return "Hello, Backend"
 
+@application.route('/go')
+def go():
+    return "Hello, Backend"
+
 @application.route('/fileupload', methods=['POST'])
 def file_upload():
     file = request.files['file']
@@ -50,4 +54,6 @@ def file_upload():
     return jsonify({'result': 'success'})
 
 if __name__ == '__main__':
-    application.run('0.0.0.0', port=5000, debug=True)
+#     application.run('0.0.0.0', port=5000, debug=True)
+    application.debug = True
+    application.run()
