@@ -38,15 +38,16 @@ def go():
 @application.route('/fileupload', methods=['POST'])
 def file_upload():
     file = request.files['file']
-    s3 = boto3.client('s3')
+    s3 = boto3.client('s3',
+                      aws_access_key_id="AKIAS2KAI3ZLHI5KXXMG",
+                      aws_secret_access_key="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"
+                      )
     s3.put_object(
         ACL="public-read",
         Bucket="myspartabucket",
         Body=file,
         Key=file.filename,
-        ContentType=file.content_type,
-        aws_access_key_id="AKIAS2KAI3ZLHI5KXXMG",
-        aws_secret_access_key="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"
+        ContentType=file.content_type
     )
 #     conn = mysql.connect()
 #     cursor = conn.cursor()
