@@ -5,7 +5,7 @@ import redis
 from elasticapm.contrib.flask import ElasticAPM
 
 # mysql = MySQL()
-app = Flask(__name__)
+application = Flask(__name__)
 
 # MySQL configurations
 # app.config['MYSQL_DATABASE_USER'] = 'admin'
@@ -48,4 +48,4 @@ def file_upload():
     return jsonify({'result': 'success'})
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    application.run('0.0.0.0', port=5000, debug=True)
