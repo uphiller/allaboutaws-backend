@@ -1,11 +1,13 @@
 import boto3
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 from flaskext.mysql import MySQL
 import redis
 from elasticapm.contrib.flask import ElasticAPM
 
 # mysql = MySQL()
 application = Flask(__name__)
+cors = CORS(application, resources={r"/*": {"origins": "*"}})
 
 # MySQL configurations
 # app.config['MYSQL_DATABASE_USER'] = 'admin'
