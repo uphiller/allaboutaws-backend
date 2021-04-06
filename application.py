@@ -44,7 +44,10 @@ def file_upload():
         Bucket="myspartabucket",
         Body=file,
         Key=file.filename,
-        ContentType=file.content_type)
+        ContentType=file.content_type,
+        aws_access_key_id="AKIAS2KAI3ZLHI5KXXMG",
+        aws_secret_access_key="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"
+    )
 #     conn = mysql.connect()
 #     cursor = conn.cursor()
 #     cursor.execute("insert into file(file_name) value('"+file.filename+"')")
