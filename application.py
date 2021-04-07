@@ -30,12 +30,7 @@ config_name = os.getenv('APP_ENV')
 
 @application.route('/')
 def main():
-#     apm.capture_message('hello, world!')
-    return "Hello, Backend"
-
-@application.route('/go')
-def go():
-    return "Hello, Backend"
+    return render_template("index.html")
 
 @application.route('/fileupload', methods=['POST'])
 def file_upload():
