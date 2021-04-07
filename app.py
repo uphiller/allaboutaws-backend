@@ -1,11 +1,10 @@
-import boto3
 from flask import Flask, render_template, request, jsonify
 
 application = Flask(__name__)
 
 @application.route('/')
 def main():
-    return "Hello, Backend"
+    return render_template("index.html")
 
 @application.route('/fileupload', methods=['POST'])
 def file_upload():
