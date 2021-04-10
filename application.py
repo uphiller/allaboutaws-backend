@@ -6,14 +6,14 @@ from flaskext.mysql import MySQL
 import redis
 from elasticapm.contrib.flask import ElasticAPM
 
-mysql = MySQL()
 application = Flask(__name__)
 cors = CORS(application, resources={r"/*": {"origins": "*"}})
 config_name = os.getenv('APP_ENV')
 
 # MySQL configurations
-application.config['MYSQL_DATABASE_USER'] = os.environ["MYSQL_USER"]
-application.config['MYSQL_DATABASE_PASSWORD'] = os.environ["MYSQL_PWD"]
+mysql = MySQL()
+application.config['MYSQL_DATABASE_USER'] = os.environ["MYSQL_DATABASE_USER"]
+application.config['MYSQL_DATABASE_PASSWORD'] = os.environ["MYSQL_DATABASE_PASSWORD"]
 application.config['MYSQL_DATABASE_DB'] = os.environ["MYSQL_DATABASE"]
 application.config['MYSQL_DATABASE_HOST'] = os.environ["MYSQL_HOST"]
 mysql.init_app(application)
