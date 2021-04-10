@@ -6,17 +6,17 @@ from flaskext.mysql import MySQL
 import redis
 from elasticapm.contrib.flask import ElasticAPM
 
-# mysql = MySQL()
+mysql = MySQL()
 application = Flask(__name__)
 cors = CORS(application, resources={r"/*": {"origins": "*"}})
 config_name = os.getenv('APP_ENV')
 
 # MySQL configurations
-# app.config['MYSQL_DATABASE_USER'] = 'admin'
-# app.config['MYSQL_DATABASE_PASSWORD'] = '12345678'
-# app.config['MYSQL_DATABASE_DB'] = 'sparta'
-# app.config['MYSQL_DATABASE_HOST'] = 'database-1.cgbie0k3ndqh.ap-northeast-2.rds.amazonaws.com'
-# mysql.init_app(app)
+application.config['MYSQL_DATABASE_USER'] = os.environ["MYSQL_USER"]
+application.config['MYSQL_DATABASE_PASSWORD'] = os.environ["MYSQL_PWD"]
+application.config['MYSQL_DATABASE_DB'] = os.environ["MYSQL_DATABASE"]
+application.config['MYSQL_DATABASE_HOST'] = os.environ["MYSQL_HOST"]
+mysql.init_app(application)
 
 #redis
 # db = redis.Redis('redis-sparta.8imnfo.0001.apn2.cache.amazonaws.com')
@@ -46,9 +46,9 @@ def file_upload():
         Key=file.filename,
         ContentType=file.content_type
     )
-#     conn = mysql.connect()
-#     cursor = conn.cursor()
-#     cursor.execute("insert into file(file_name) value('"+file.filename+"')")
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute("insert into file(file_name) value('"+file.filename+"')")
 #     cursor.execute("SELECT count(*) AS COUNT from file")
 #     data = cursor.fetchone()
 #     db.set("fileCount", data['COUNT'])
